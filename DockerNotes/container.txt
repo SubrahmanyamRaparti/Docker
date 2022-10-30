@@ -3,17 +3,19 @@ docker container run --rm \         => Remove the container & container logs onc
                   --detach \        => Run the container in the background
                --name proxy \       => Name of the container
              --publish 80:80 \      => Host Port : Container Port
-          --env APP_NAME=demo \     => Passing environment variable
-            nginx:stable-alpine     => Image
+            --network app_net \     => Network of the container
+           --env APP_NAME=demo \    => Passing environment variable
+           nginx:stable-alpine      => Image
 
 Run a container with interactive mode. Note: Container will stop once 'exit' of the container
 docker container run --rm \         => Remove the container & container logs once the container is stopped
                        -it \        => Keeps session open to receive the terminal input, TTY
                --name proxy \       => Name of the container
              --publish 80:80 \      => Host Port : Container Port
-          --env APP_NAME=demo \     => Passing environment variable
-           nginx:stable-alpine \    => Image
-                            sh      => Command to run inside a docker container      
+            --network app_net \     => Network of the container
+           --env APP_NAME=demo \    => Passing environment variable
+            nginx:stable-alpine \   => Image
+                             sh     => Command to run inside a docker container      
 
 Interactive with a running container
 docker container exec \             => Runs a new command in a running container
@@ -38,5 +40,6 @@ docker container logs proxy         => Display container logs. Logs get deleted 
 docker container top proxy          => Display process running inside the docker container
 
 docker container inspect proxy      => Display metadata about the container (Config, Volume, Networks)
+docker container inspect --format "{{.NetworkSettings.IPAddress}}" proxy
 
 docker container stats proxy        => Display live performance data streams of the container

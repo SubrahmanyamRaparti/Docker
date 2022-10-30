@@ -1,0 +1,8 @@
+docker network create app_net           => Creates a network
+
+docker network ls                       => Display docker network(s)
+
+docker network inspect app_net          => Display metadata about the network(s)
+
+docker network connect app_net proxy    => Add a container to a network
+docker network disconnect app_net proxy => Remove a container from a network
