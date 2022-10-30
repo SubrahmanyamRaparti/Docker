@@ -1,0 +1,42 @@
+Run a container using the below command.
+docker container run --rm \         => Remove the container & container logs once the container is stopped
+                  --detach \        => Run the container in the background
+               --name proxy \       => Name of the container
+             --publish 80:80 \      => Host Port : Container Port
+          --env APP_NAME=demo \     => Passing environment variable
+            nginx:stable-alpine     => Image
+
+Run a container with interactive mode. Note: Container will stop once 'exit' of the container
+docker container run --rm \         => Remove the container & container logs once the container is stopped
+                       -it \        => Keeps session open to receive the terminal input, TTY
+               --name proxy \       => Name of the container
+             --publish 80:80 \      => Host Port : Container Port
+          --env APP_NAME=demo \     => Passing environment variable
+           nginx:stable-alpine \    => Image
+                            sh      => Command to run inside a docker container      
+
+Interactive with a running container
+docker container exec \             => Runs a new command in a running container
+                   -it \            => Keeps session open to receive the terminal input, TTY
+                  proxy \           => Name of the container
+                    sh              => Command to run inside a docker container      
+        
+docker container stop proxy         => Stop a container
+docker container start proxy        => Start a container
+docker container restart proxy      => Restart a container
+
+docker container ls                 => Display running container(s)
+docker container ls -a              => Display running & stopped container(s)
+
+docker container port proxy         => Lists the container ports
+
+docker container rm                 => Remove a stopped container(s)
+docker container rm -f              => Remove a running container(s) forcefully
+
+docker container logs proxy         => Display container logs. Logs get deleted if the container is removed.
+
+docker container top proxy          => Display process running inside the docker container
+
+docker container inspect proxy      => Display metadata about the container (Config, Volume, Networks)
+
+docker container stats proxy        => Display live performance data streams of the container

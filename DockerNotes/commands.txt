@@ -1,0 +1,2 @@
+docker version => Returns the version of the client and server.
+docker system info => Returns configuration details. Most configurations of the docker engine.
