@@ -1,0 +1,12 @@
+docker image ls                                                 => Display docker image(s)
+
+docker image inspect nginx:stable-alpine                        => Display metadata about the image
+docker image history nginx:stable-alpine                        => Display the layers of the image build
+
+docker image tag nginx:stable-alpine nginx:stable-alpine-tag    => Create a new tag from an existing image
+
+docker image build --tag subrahmanyamr/app:1.0.0 .              => Build an image
+
+docker image push subrahmanyamr/app:1.0.0                       => Push an image to Docker Hub repository
+
+docker image pull subrahmanyamr/app:1.0.0                       => Pull an image from a Docker Hub repository

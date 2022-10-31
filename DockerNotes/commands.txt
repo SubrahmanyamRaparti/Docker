@@ -1,6 +1,11 @@
-docker version => Returns the version of the client and server.
-docker system info => Returns configuration details. Most configurations of the docker engine.
+docker version => Returns the version of the client and server
+
+docker system info => Returns configuration details. Most configurations of the docker engine
 
 docker container inspect --format "{{.NetworkSettings.IPAddress}}" proxy => Gives the IP address of the container
 
 docker container exec -ti proxy1 ping proxy2 => Ping container proxy2 from container proxy1 (DNS resolution cannot be done on default bridge network)
+
+docker login => Login to Docker Hub
+
+docker logout => Logout & delete credentials

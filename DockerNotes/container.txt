@@ -35,11 +35,10 @@ docker container port proxy         => Lists the container ports
 docker container rm                 => Remove a stopped container(s)
 docker container rm -f              => Remove a running container(s) forcefully
 
-docker container logs proxy         => Display container logs. Logs get deleted if the container is removed.
+docker container logs proxy         => Display container logs. Logs get deleted if the container is removed
 
 docker container top proxy          => Display process running inside the docker container
 
 docker container inspect proxy      => Display metadata about the container (Config, Volume, Networks)
-docker container inspect --format "{{.NetworkSettings.IPAddress}}" proxy
 
 docker container stats proxy        => Display live performance data streams of the container

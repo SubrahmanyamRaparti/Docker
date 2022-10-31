@@ -1,0 +1,14 @@
+docker image prune                  => Remove all dangling images
+
+docker volume prune                 => Remove all local volumes those not used by at least one container
+
+docker container prune              => Remove all stopped containers
+
+docker system prune                 => Remove all dangling images, stopped containers & unused networks
+docker system prune -a              => Remove all dangling images, unused images, stopped containers & unused networks
+docker system prune -a  --volumes   => Remove all dangling images, unused images, stopped containers & unused networks WITH volumes
+
+By default, volumes are not removed to prevent important data from being deleted if there is currently no container using the volume.
+Use the --volumes flag when running the command to prune volumes as well:
+
+docker system df                    => Shows docker information regarding the amount of disk space used by the docker daemon
