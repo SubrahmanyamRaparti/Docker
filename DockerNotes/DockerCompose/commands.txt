@@ -1,0 +1,27 @@
+docker-compose up                   => Build image(s) (if required), create and start container(s)
+docker-compose up -d                => Build image(s) (if required), create and start container(s) in the background
+docker-compose up -d --build        => Rebuild image(s), create and start container(s) in the background
+
+docker-compose down                 => Stop and remove container(s)
+docker-compose down -v              => Stop and remove container(s) and volumes
+
+docker-compose ps                   => Display running container(s)
+docker-compose ps -a                => Display running & stopped container(s)
+
+docker-compose start                => Start a container
+docker-compose start proxy          => Start a proxy container ONLY
+
+docker-compose stop                 => Stop a container
+docker-compose stop proxy           => Stop a proxy container ONLY
+
+docker-compose restart              => Restart a container
+docker-compose restart proxy        => Restart a proxy container ONLY
+
+docker-compose images               => Display docker image(s) being used in docker compose file
+
+docker-compose top                  => Display process running inside the docker container(s)
+
+docker-compose build                => ONLY builds an image does not start the container(s)
+docker-compose build --no-cache     => ONLY builds an image does not start the container(s) and does not us the cache when building
+
+docker-compose exec -ti proxy sh    => Keeps session open to receive the terminal input, TTY
