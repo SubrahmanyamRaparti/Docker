@@ -1,0 +1,16 @@
+docker container run --rm --detach --name db \          
+                          --publish 3306:3306 \
+                             --network app_net \ 
+                --volume app_vol:/var/lib/mysql \   => Named volume
+            --env MYSQL_RANDOM_ROOT_PASSWORD=yes \
+                                    mysql:latest
+                                    
+docker container run --rm --detach --name proxy \          
+                                 --publish 80:80 \
+                                --network app_net \ 
+             --volume $(pwd):/usr/share/nginx/html \ => Bind volume
+                         nginx:nginx:stable-alpine
+
+docker volume ls                                    => Display docker volume(s)
+
+docker volume inspect app_vol                       => Display metadata about the volume(s)
