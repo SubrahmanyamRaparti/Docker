@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+    proxy:
+        container_name: "proxy"             #Internal docker DNS resolution name
+        image: subrahmanyamr/nginx:1.0.0
+        build:
+            context: .
+            dockerfile: nginx.Dockerfile
+        ports:
+            - "80:80"
+        networks:
+            - "app_net"
+    web:
+        container_name: "web-server"        #Internal docker DNS resolution name
+        image: httpd:2
+        networks:
+            - "app_net"
+        volumes:
+            - "./SampleBootstrapWebApp:/usr/local/apache2/htdocs:ro"        # Read only access to the container "ro" meaning can't edit any files inside html/
+    db:
+        container_name: "database"
+        image: mysql:8
+        networks:
+            - "app_net"
+        environment:
+            - "MYSQL_RANDOM_ROOT_PASSWORD=yes"
+        volumes:
+            - "app_vol:/var/lib/mysql"
+volumes:
+    app_vol:
+        name: "app_vol"
+
+networks:
+    app_net:
+        name: "app-net"
+        driver: "bridge"
