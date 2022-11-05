@@ -1,0 +1,41 @@
+Swarm ports
++---------------------------+
+Custom UDP - 7946               => Docker Swarm
+Custom UDP - 4789               => Docker Swarm
+Custom TCP - 7946               => Docker Swarm
+Custom TCP - 2377               => Docker Swarm and remote manager
++---------------------------+
+
+docker system info
+
+docker swarm
+    docker swarm init           => Activate Swarm
+    docker swarm join
+        docker swarm join --token <Leader token>
+    docker swarm join-token
+        docker swarm join-token worker
+        docker swarm join-token manager
+    docker swarm leave
+    
+docker node
+    docker node ls              => Display all the connected nodes
+    docker node ps              => Display process running on the current node
+    docker node promote         => Promote a node to be a manager
+    docker node demote          => Demote a node to a worker
+    
+docker service
+    docker service create
+        docker service create --publish 80:80 --name proxy --replicas 3 nginx:stable-alpine
+        docker service create --publish 5432:5432 --detach \
+                                --secret db --name database \
+                --env POSTGRES_PASSWORD_FILE=/run/secrets/db \
+                                                 postgres:13
+    docker service remove
+        docker service remove proxy
+    docker service update
+        docker service update --detach --replicas 5 proxy
+    docker service ps           => Display the process running on all nodes
+        docker service ps proxy
+    docker service logs
+        docker service logs proxy
+    docker service ls           => Display the defined services
