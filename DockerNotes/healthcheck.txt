@@ -1,0 +1,19 @@
+Example 1 CLI
+
+docker container run --publish 80:80 --detach --name proxy --rm \
+--health-cmd="curl -f localhost:800 || false" \
+--health-interval=5s \
+--health-timeout=2s \
+--health-retries=2 \
+--health-start-period=10s \
+nginx:stable-alpine
+
+Example 2 Dockerfile
+
+HEALTHCHECK curl -f localhost:80 || false
+
+Example 3 Dockerfile
+
+HEALTHCHECK --health-interval=5s --health-timeout=2s --health-retries=3 --health-start-period=10s \ 
+    CMD curl -f localhost:80 || false
+

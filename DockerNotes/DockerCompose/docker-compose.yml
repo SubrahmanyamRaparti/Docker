@@ -11,6 +11,13 @@ services:
             - "80:80"
         networks:
             - "app_net"
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:80"]
+            interval: 10s
+            timeout: 30s
+            start_period: 5s
+            retries: 3
+
     web:
         container_name: "web-server"        #Internal docker DNS resolution name
         image: httpd:2
@@ -27,6 +34,12 @@ services:
             - "MYSQL_RANDOM_ROOT_PASSWORD=yes"
         volumes:
             - "app_vol:/var/lib/mysql"
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            interval: 5m
+            timeout: 20s
+            start_period: 5s
+            retries: 5
 volumes:
     app_vol:
         name: "app_vol"
