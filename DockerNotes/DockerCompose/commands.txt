@@ -25,3 +25,7 @@ docker-compose build                => ONLY builds an image does not start the c
 docker-compose build --no-cache     => ONLY builds an image does not start the container(s) and does not us the cache when building
 
 docker-compose exec -ti proxy sh    => Keeps session open to receive the terminal input, TTY
+
+Below command will pull the configurations from docker-compose.yml those not present in docker-compose.production.yml, 
+will merge them together and will output a YAML file to deploy.
+docker-compose -f docker-compose.yml -f docker-compose.production.yml config > deploy-compose-file.yml

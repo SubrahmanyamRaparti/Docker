@@ -34,6 +34,9 @@ docker service
         docker service remove proxy
     docker service update
         docker service update --detach --replicas 5 proxy
+    docker service scale        => Works same as above command. It scales up the containers
+    docker service scale proxy=5
+    docker service scale proxy=5 custom-app=2 => Can scale more than one service
     docker service ps           => Display the process running on all nodes
         docker service ps proxy
     docker service logs
