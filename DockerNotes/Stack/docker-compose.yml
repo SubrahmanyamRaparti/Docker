@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+    drupal:
+        image: drupal:9.3
+        volumes:
+            - "drupal-modules:/var/www/html/modules"
+            - "drupal-profiles:/var/www/html/profiles"
+            - "drupal-sites:/var/www/html/sites"
+            - "drupal-themes:/var/www/html/themes"
+        networks:
+            - "drupal-network"
+        ports:
+            - "80:80"
+    
+    database:
+        image: postgres:13
+        volumes:
+            - "drupal-data:/var/lib/postgresql/data"
+        environment:
+            - "POSTGRES_USER_FILE=/run/secrets/postgres-username"
+            - "POSTGRES_PASSWORD_FILE=/run/secrets/postgres-db-key"
+            - "POSTGRES_DB=drupal"
+        networks:
+            - "drupal-network"
+        secrets:
+            - "postgres-username"
+            - "postgres-db-key"
+volumes:
+    drupal-modules:
+        name: "drupal-modules"
+    drupal-profiles:
+        name: "drupal-profiles"
+    drupal-sites:
+        name: "drupal-sites"
+    drupal-themes:
+        name: "drupal-themes"
+    drupal-data:
+        name: "drupal-data"
+    
+networks:
+    drupal-network:
+        name: "drupal-network"
+
+# echo "postgreskey" | docker secret create --label "Application=Drupal" postgres-db-key -
+
+secrets:
+    postgres-username:
+        file: ./postgres-username.txt
+    postgres-db-key:
+        external: true

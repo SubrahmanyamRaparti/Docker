@@ -1,0 +1,3 @@
+docker stack ls
+docker stack ps
+docker stack deploy
